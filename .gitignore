@@ -102,11 +102,7 @@ parsed_resumes/
 models/weights/
 checkpoints/
 
-# ==========================
-# Jupyter Notebooks
-# ==========================
-.ipynb_checkpoints/
-*.ipynb
+
 
 # ==========================
 # Node / Frontend (if any)
