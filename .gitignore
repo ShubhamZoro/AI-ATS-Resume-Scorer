@@ -1,6 +1,20 @@
-# ==========================
+# ============================================================
+# ATS Resume Scorer — .gitignore
+# ============================================================
+
+# ----------------------------
+# Environment & Secrets
+# ----------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ----------------------------
 # Python
-# ==========================
+# ----------------------------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -14,114 +28,121 @@ parts/
 var/
 sdist/
 wheels/
-*.egg-link
-.eggs/
+pip-wheel-metadata/
+share/python-wheels/
+.installed.cfg
 MANIFEST
 
-# ==========================
+# ----------------------------
 # Virtual Environments
-# ==========================
+# ----------------------------
 venv/
-env/
-ENV/
 .venv/
-.env.bak
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
 
 
-# ==========================
-# Environment Variables
-# ==========================
-.env
-.env.*
-!.env.example
+# ----------------------------
+# Dependency Managers
+# ----------------------------
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
 
-# ==========================
+# ----------------------------
+# FastAPI / Uvicorn
+# ----------------------------
+*.log
+logs/
+*.sqlite3
+*.db
+
+# ----------------------------
+# Streamlit
+# ----------------------------
+.streamlit/secrets.toml
+frontend/.streamlit/secrets.toml
+
+# ----------------------------
+# Jupyter Notebooks
+# ----------------------------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+jupyter notebooks/.ipynb_checkpoints/
+jupyterNotebook/.ipynb_checkpoints/
+# Keep notebooks but ignore outputs (optional — remove next line to track outputs)
+# *.ipynb   # uncomment to ignore notebooks entirely
+
+# ----------------------------
 # IDE & Editors
-# ==========================
+# ----------------------------
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
 *~
+
+# ----------------------------
+# OS Generated
+# ----------------------------
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# ==========================
-# Testing & Coverage
-# ==========================
-.pytest_cache/
-.coverage
-htmlcov/
-coverage.xml
-*.coveragerc
-nosetests.xml
-test-results/
-
-# ==========================
-# Type Checking
-# ==========================
-.mypy_cache/
-.dmypy.json
-dmypy.json
-.pyright/
-
-# ==========================
-# Logs & Temp Files
-# ==========================
-*.log
+# ----------------------------
+# Uploads & Temp Files
+# ----------------------------
+uploads/
+tmp/
+temp/
 *.tmp
 *.bak
-logs/
-temp/
-tmp/
+*.orig
 
-# ==========================
-# Database
-# ==========================
-*.db
-*.sqlite
-*.sqlite3
-
-# ==========================
-# Uploaded / Generated Files
-# ==========================
-uploads/
-resumes/
-output/
-parsed_resumes/
-
-# ==========================
-# ML / AI Model Artifacts
-# ==========================
+# ----------------------------
+# ML / Data
+# ----------------------------
 *.pkl
 *.pickle
 *.h5
+*.hdf5
 *.pt
 *.pth
-*.onnx
-models/weights/
-checkpoints/
+*.ckpt
+data/raw/
+data/processed/
+datasets/
 
-
-
-# ==========================
-# Node / Frontend (if any)
-# ==========================
-node_modules/
-.next/
-dist/
-.cache/
-
-# ==========================
+# ----------------------------
 # Docker
-# ==========================
-.dockerignore
+# ----------------------------
+.dockerenv
 docker-compose.override.yml
 
-# ==========================
-# OS Files
-# ==========================
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+# ----------------------------
+# Misc
+# ----------------------------
+*.zip
+*.tar.gz
+*.rar

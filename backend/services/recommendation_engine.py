@@ -434,3 +434,4 @@ def get_recommendation_summary(recommendations_result: Dict) -> str:
             f'Found {total} recommendation(s) for improvement. '
             f'Addressing these could improve your score by up to {improvement:.0f} points.'
         )
+

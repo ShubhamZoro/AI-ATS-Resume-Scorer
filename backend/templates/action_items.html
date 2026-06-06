@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Skill Validation & Content Analysis</title>
@@ -22,7 +21,6 @@
             padding-bottom: 14px;
             margin-bottom: 32px;
         }
-
         .page-header .report-label {
             font-size: 11px;
             font-weight: 700;
@@ -30,11 +28,7 @@
             letter-spacing: 2px;
             color: #64748b;
         }
-
-        .page-header .date {
-            font-size: 12px;
-            color: #64748b;
-        }
+        .page-header .date { font-size: 12px; color: #64748b; }
 
         h1.report-title {
             font-size: 28px;
@@ -60,7 +54,6 @@
             gap: 20px;
             margin-bottom: 24px;
         }
-
         .stat-box {
             flex: 1;
             text-align: center;
@@ -68,33 +61,12 @@
             border-radius: 8px;
             border: 1px solid #e2e8f0;
         }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            margin-top: 4px;
-        }
-
-        .stat-total {
-            background: #f8fafc;
-        }
-
-        .stat-valid {
-            background: #f0fdf4;
-        }
-
-        .stat-invalid {
-            background: #fef2f2;
-        }
+        .stat-number { font-size: 32px; font-weight: 900; line-height: 1; }
+        .stat-label  { font-size: 11px; font-weight: 700; text-transform: uppercase;
+                       letter-spacing: 1px; color: #64748b; margin-top: 4px; }
+        .stat-total   { background: #f8fafc; }
+        .stat-valid   { background: #f0fdf4; }
+        .stat-invalid { background: #fef2f2; }
 
         /* ── Validated Skills ── */
         .validated-skill {
@@ -104,19 +76,16 @@
             border-left: 4px solid #16a34a;
             border-radius: 0 6px 6px 0;
         }
-
         .validated-skill-name {
             font-size: 14px;
             font-weight: 700;
             color: #14532d;
         }
-
         .validated-skill-evidence {
             font-size: 12px;
             color: #166534;
             margin-top: 3px;
         }
-
         .project-badge {
             display: inline-block;
             background: #dcfce7;
@@ -136,7 +105,6 @@
             gap: 8px;
             margin-bottom: 8px;
         }
-
         .unvalidated-pill {
             background: #fef2f2;
             color: #991b1b;
@@ -146,7 +114,6 @@
             font-size: 12px;
             font-weight: 600;
         }
-
         .unvalidated-tip {
             font-size: 13px;
             color: #64748b;
@@ -165,53 +132,18 @@
             border-bottom: 1px solid #f1f5f9;
             font-size: 13px;
         }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-key {
-            font-weight: 600;
-            color: #334155;
-        }
-
-        .info-value {
-            color: #475569;
-        }
-
+        .info-row:last-child { border-bottom: none; }
+        .info-key   { font-weight: 600; color: #334155; }
+        .info-value { color: #475569; }
         .info-block {
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 16px;
         }
-
-        .tag-ok {
-            background: #dcfce7;
-            color: #166534;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .tag-warn {
-            background: #fef9c3;
-            color: #92400e;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .tag-bad {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
+        .tag-ok  { background:#dcfce7; color:#166534; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+        .tag-warn{ background:#fef9c3; color:#92400e; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+        .tag-bad { background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
 
         .footer {
             margin-top: 48px;
@@ -224,7 +156,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <div class="page-header">
@@ -321,7 +252,7 @@
     <!-- ── ATS Compatibility ── -->
     <h2>ATS Compatibility</h2>
     {% set ats_score = component_scores.ats_compatibility %}
-    {% set ats_pct = component_pct.ats_compatibility %}
+    {% set ats_pct   = component_pct.ats_compatibility %}
     <div class="info-block">
         <div class="info-row">
             <span class="info-key">ATS Compatibility Score</span>
@@ -356,5 +287,4 @@
     </div>
 
 </body>
-
 </html>

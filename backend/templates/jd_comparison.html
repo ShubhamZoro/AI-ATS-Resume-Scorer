@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Recommendations & Action Items</title>
@@ -22,41 +21,16 @@
             padding-bottom: 14px;
             margin-bottom: 32px;
         }
+        .page-header .report-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#64748b; }
+        .page-header .date         { font-size:12px; color:#64748b; }
 
-        .page-header .report-label {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #64748b;
-        }
-
-        .page-header .date {
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        h1.report-title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #0f172a;
-            margin: 0 0 10px 0;
-        }
-
-        .report-subtitle {
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 28px;
-        }
+        h1.report-title { font-size:28px; font-weight:900; color:#0f172a; margin:0 0 10px 0; }
+        .report-subtitle { font-size:14px; color:#64748b; margin-bottom:28px; }
 
         h2 {
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #334155;
-            margin: 36px 0 16px 0;
-            padding-bottom: 8px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: #334155;
+            margin: 36px 0 16px 0; padding-bottom: 8px;
             border-bottom: 2px solid #e2e8f0;
         }
 
@@ -67,14 +41,12 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
         }
-
         .issue-header {
             padding: 12px 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .issue-severity-badge {
             font-size: 10px;
             font-weight: 800;
@@ -84,44 +56,26 @@
             border-radius: 4px;
             flex-shrink: 0;
         }
-
-        .badge-high {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .badge-moderate {
-            background: #fef9c3;
-            color: #92400e;
-        }
-
-        .badge-low {
-            background: #e0e7ff;
-            color: #3730a3;
-        }
+        .badge-high     { background: #fee2e2; color: #991b1b; }
+        .badge-moderate { background: #fef9c3; color: #92400e; }
+        .badge-low      { background: #e0e7ff; color: #3730a3; }
 
         .issue-title-text {
             font-size: 14px;
             font-weight: 700;
             color: #0f172a;
         }
-
-        .issue-body {
-            padding: 0 16px 14px 16px;
-        }
-
+        .issue-body { padding: 0 16px 14px 16px; }
         .issue-explanation {
             font-size: 13px;
             color: #475569;
             margin-bottom: 10px;
         }
-
         .issue-detail-row {
             display: flex;
             gap: 12px;
             margin-bottom: 8px;
         }
-
         .detail-label {
             font-size: 11px;
             font-weight: 700;
@@ -132,13 +86,11 @@
             flex-shrink: 0;
             padding-top: 1px;
         }
-
         .detail-value {
             font-size: 13px;
             color: #334155;
             flex: 1;
         }
-
         .fix-box {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
@@ -148,19 +100,10 @@
             color: #14532d;
             margin-top: 8px;
         }
-
-        .fix-box strong {
-            display: block;
-            margin-bottom: 3px;
-        }
+        .fix-box strong { display: block; margin-bottom: 3px; }
 
         /* ── Action Items inside each card ── */
-        .action-list {
-            margin: 8px 0 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
+        .action-list { margin: 8px 0 0 0; padding: 0; list-style: none; }
         .action-list li {
             padding: 5px 0 5px 20px;
             font-size: 12px;
@@ -168,11 +111,7 @@
             border-bottom: 1px solid #f1f5f9;
             position: relative;
         }
-
-        .action-list li:last-child {
-            border-bottom: none;
-        }
-
+        .action-list li:last-child { border-bottom: none; }
         .action-list li::before {
             content: "→";
             position: absolute;
@@ -182,14 +121,8 @@
         }
 
         /* ── Printable Checklist ── */
-        .checklist-section {
-            margin-top: 40px;
-        }
-
-        .checklist-group {
-            margin-bottom: 28px;
-        }
-
+        .checklist-section { margin-top: 40px; }
+        .checklist-group { margin-bottom: 28px; }
         .checklist-group-title {
             font-size: 13px;
             font-weight: 700;
@@ -199,21 +132,9 @@
             border-radius: 4px;
             margin-bottom: 10px;
         }
-
-        .cgt-high {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .cgt-moderate {
-            background: #fef9c3;
-            color: #78350f;
-        }
-
-        .cgt-low {
-            background: #ede9fe;
-            color: #5b21b6;
-        }
+        .cgt-high     { background: #fee2e2; color: #991b1b; }
+        .cgt-moderate { background: #fef9c3; color: #78350f; }
+        .cgt-low      { background: #ede9fe; color: #5b21b6; }
 
         .checklist-item {
             display: flex;
@@ -222,11 +143,7 @@
             padding: 8px 0;
             border-bottom: 1px dotted #e2e8f0;
         }
-
-        .checklist-item:last-child {
-            border-bottom: none;
-        }
-
+        .checklist-item:last-child { border-bottom: none; }
         .checkbox {
             width: 16px;
             height: 16px;
@@ -235,11 +152,7 @@
             flex-shrink: 0;
             margin-top: 2px;
         }
-
-        .checklist-text {
-            font-size: 13px;
-            color: #334155;
-        }
+        .checklist-text { font-size: 13px; color: #334155; }
 
         /* ── Empty state ── */
         .empty-state {
@@ -253,17 +166,13 @@
         }
 
         .footer {
-            margin-top: 48px;
-            padding-top: 16px;
+            margin-top: 48px; padding-top: 16px;
             border-top: 1px solid #e2e8f0;
-            font-size: 11px;
-            color: #94a3b8;
-            display: flex;
-            justify-content: space-between;
+            font-size: 11px; color: #94a3b8;
+            display: flex; justify-content: space-between;
         }
     </style>
 </head>
-
 <body>
 
     <div class="page-header">
@@ -319,8 +228,7 @@
                 <strong style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:#94a3b8;">
                     Example:
                 </strong>
-                <pre
-                    style="margin:6px 0 0 0; white-space:pre-wrap; font-family:monospace; font-size:11px; color:#334155;">{{ issue.example_improvement }}</pre>
+                <pre style="margin:6px 0 0 0; white-space:pre-wrap; font-family:monospace; font-size:11px; color:#334155;">{{ issue.example_improvement }}</pre>
             </div>
             {% endif %}
         </div>
@@ -455,5 +363,4 @@
     </div>
 
 </body>
-
 </html>
