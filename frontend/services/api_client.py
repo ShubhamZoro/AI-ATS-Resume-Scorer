@@ -8,10 +8,18 @@ DEFAULT_BACKEND_URL = "http://localhost:8000"
 
 
 def _backend_url() -> str:
+    # Try flat key first (Streamlit Cloud secrets UI adds flat keys)
+    try:
+        return st.secrets["BACKEND_URL"]
+    except (KeyError, FileNotFoundError, AttributeError):
+        pass
+    # Fall back to sectioned key [backend] url =
     try:
         return st.secrets["backend"]["url"]
-    except (KeyError, FileNotFoundError):
-        return DEFAULT_BACKEND_URL
+    except (KeyError, FileNotFoundError, AttributeError):
+        pass
+    import os
+    return os.getenv("BACKEND_URL", DEFAULT_BACKEND_URL)
 
 
 def _auth_headers(access_token: str) -> Dict[str, str]:

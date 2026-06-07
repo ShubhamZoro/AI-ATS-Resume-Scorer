@@ -1,0 +1,7 @@
+# Frontend-only dependencies for Streamlit Cloud deployment.
+# This file is used by Streamlit Cloud — do NOT include backend ML packages here.
+
+streamlit>=1.32
+requests>=2.31
+supabase>=2.4
+python-dotenv>=1.0
