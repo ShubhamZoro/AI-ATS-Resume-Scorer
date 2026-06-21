@@ -4,87 +4,191 @@
     <meta charset="UTF-8">
     <title>Skill Validation & Content Analysis</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
             color: #1e293b;
-            margin: 0;
-            padding: 40px 50px;
+            background: #ffffff;
+            font-size: 13px;
             line-height: 1.6;
-            background: #fff;
         }
 
-        .page-header {
+        /* ── Header ── */
+        .cover-header {
+            background: linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0d9488 100%);
+            padding: 36px 48px 32px 48px;
+            color: #ffffff;
+        }
+        .cover-header-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 3px solid #1e293b;
-            padding-bottom: 14px;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
-        .page-header .report-label {
+        .brand-name {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #99f6e4;
+        }
+        .report-meta {
+            text-align: right;
+            font-size: 11px;
+            color: #99f6e4;
+        }
+        .report-meta .report-num {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .cover-title {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .cover-subtitle {
+            font-size: 14px;
+            color: #99f6e4;
+        }
+
+        /* ── Content ── */
+        .content { padding: 36px 48px; }
+
+        /* ── Section Heading ── */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 32px 0 16px 0;
+        }
+        .section-heading:first-child { margin-top: 0; }
+        .section-heading-bar {
+            width: 4px;
+            height: 22px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #0d9488, #14b8a6);
+            flex-shrink: 0;
+        }
+        .section-heading h2 {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0f172a;
+        }
+        .section-heading-line {
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        /* ── Stats Row ── */
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            flex: 1;
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid;
+        }
+        .stat-card-total   { background: #f8fafc; border-color: #e2e8f0; }
+        .stat-card-valid   { background: #f0fdf4; border-color: #bbf7d0; }
+        .stat-card-invalid { background: #fef2f2; border-color: #fecaca; }
+        .stat-number {
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .stat-label {
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #64748b;
+            letter-spacing: 1px;
+            margin-top: 6px;
         }
-        .page-header .date { font-size: 12px; color: #64748b; }
+        .stat-card-total .stat-label   { color: #64748b; }
+        .stat-card-valid .stat-label   { color: #15803d; }
+        .stat-card-invalid .stat-label { color: #b91c1c; }
 
-        h1.report-title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #0f172a;
-            margin: 0 0 28px 0;
-        }
-
-        h2 {
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #334155;
-            margin: 32px 0 16px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        /* ── Stats Bar ── */
-        .stats-bar {
-            display: flex;
-            gap: 20px;
+        /* ── Validation Progress Bar ── */
+        .validation-progress {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px 20px;
             margin-bottom: 24px;
         }
-        .stat-box {
-            flex: 1;
-            text-align: center;
-            padding: 18px 12px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+        .vp-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
-        .stat-number { font-size: 32px; font-weight: 900; line-height: 1; }
-        .stat-label  { font-size: 11px; font-weight: 700; text-transform: uppercase;
-                       letter-spacing: 1px; color: #64748b; margin-top: 4px; }
-        .stat-total   { background: #f8fafc; }
-        .stat-valid   { background: #f0fdf4; }
-        .stat-invalid { background: #fef2f2; }
+        .vp-label { font-size: 12px; font-weight: 700; color: #334155; }
+        .vp-pct   { font-size: 14px; font-weight: 900; color: #0d9488; }
+        .vp-bar-wrap {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .vp-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #0d9488, #14b8a6);
+        }
 
         /* ── Validated Skills ── */
         .validated-skill {
-            margin-bottom: 12px;
-            padding: 12px 16px;
-            background: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            border-radius: 0 6px 6px 0;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #bbf7d0;
         }
-        .validated-skill-name {
-            font-size: 14px;
+        .validated-skill-header {
+            background: linear-gradient(90deg, #f0fdf4, #fafffe);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #bbf7d0;
+        }
+        .skill-check-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: white;
+            font-size: 10px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 20px;
+            flex-shrink: 0;
+        }
+        .skill-name {
+            font-size: 13px;
             font-weight: 700;
             color: #14532d;
         }
-        .validated-skill-evidence {
-            font-size: 12px;
-            color: #166534;
-            margin-top: 3px;
+        .validated-skill-body {
+            padding: 8px 14px;
+            background: #fff;
+        }
+        .evidence-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 6px;
         }
         .project-badge {
             display: inline-block;
@@ -95,195 +199,246 @@
             padding: 2px 10px;
             font-size: 11px;
             font-weight: 600;
-            margin: 3px 3px 0 0;
+            margin: 2px 4px 2px 0;
         }
 
         /* ── Unvalidated Skills ── */
-        .unvalidated-grid {
+        .unvalidated-intro {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 12px;
+            padding: 12px 16px;
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+        }
+        .unvalidated-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
         }
         .unvalidated-pill {
             background: #fef2f2;
             color: #991b1b;
             border: 1px solid #fecaca;
             border-radius: 9999px;
-            padding: 4px 12px;
+            padding: 4px 14px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
         }
-        .unvalidated-tip {
-            font-size: 13px;
-            color: #64748b;
-            background: #f8fafc;
-            padding: 12px 16px;
-            border-radius: 6px;
-            margin-top: 12px;
-            border: 1px solid #e2e8f0;
-        }
-
-        /* ── Grammar & ATS Compat Sections ── */
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 14px;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 13px;
-        }
-        .info-row:last-child { border-bottom: none; }
-        .info-key   { font-weight: 600; color: #334155; }
-        .info-value { color: #475569; }
-        .info-block {
-            border: 1px solid #e2e8f0;
+        .fix-tip-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
             border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 16px;
+            padding: 14px 18px;
+            font-size: 12px;
+            color: #78350f;
         }
-        .tag-ok  { background:#dcfce7; color:#166534; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
-        .tag-warn{ background:#fef9c3; color:#92400e; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
-        .tag-bad { background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
-
-        .footer {
-            margin-top: 48px;
-            padding-top: 16px;
-            border-top: 1px solid #e2e8f0;
+        .fix-tip-box strong {
+            display: block;
             font-size: 11px;
-            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+
+        /* ── ATS Compat Table ── */
+        .compat-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .compat-table td {
+            padding: 11px 16px;
+            font-size: 13px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .compat-table .td-key {
+            font-weight: 700;
+            color: #334155;
+            width: 200px;
+            background: #f8fafc;
+        }
+        .compat-table .td-val { color: #475569; }
+        .tag {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tag-ok   { background: #dcfce7; color: #166534; }
+        .tag-warn { background: #fef9c3; color: #92400e; }
+        .tag-bad  { background: #fee2e2; color: #991b1b; }
+
+        /* ── Footer ── */
+        .pdf-footer {
+            margin-top: 48px;
+            padding: 16px 48px;
+            background: #f8fafc;
+            border-top: 2px solid #e2e8f0;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
+        .pdf-footer-brand { font-size: 11px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 1px; }
+        .pdf-footer-page  { font-size: 11px; color: #94a3b8; }
     </style>
 </head>
 <body>
 
-    <div class="page-header">
-        <div class="report-label">ATS Resume Score Report</div>
-        <div class="date">{{ timestamp | format_date }}</div>
+    <!-- ── Header ── -->
+    <div class="cover-header">
+        <div class="cover-header-top">
+            <div class="brand-name">ATS Resume Scorer</div>
+            <div class="report-meta">
+                <span class="report-num">Report 2 of 4</span>
+                {{ timestamp | format_date }}
+            </div>
+        </div>
+        <div class="cover-title">Skill Validation &amp; Content</div>
+        <div class="cover-subtitle">Evidence-backed skill analysis &amp; ATS compatibility check</div>
     </div>
 
-    <h1 class="report-title">Skill Validation &amp; Content Analysis</h1>
+    <div class="content">
 
-    <!-- ── Stats ── -->
-    <h2>Skill Validation Analysis</h2>
+        <!-- ── Stats ── -->
+        <div class="section-heading">
+            <div class="section-heading-bar"></div>
+            <h2>Skill Validation Overview</h2>
+            <div class="section-heading-line"></div>
+        </div>
 
-    <div class="stats-bar">
-        <div class="stat-box stat-total">
-            <div class="stat-number" style="color:#1e293b;">{{ total_skills }}</div>
-            <div class="stat-label">Total Skills</div>
+        <div class="stats-row">
+            <div class="stat-card stat-card-total">
+                <div class="stat-number" style="color:#1e293b;">{{ total_skills }}</div>
+                <div class="stat-label">Total Skills</div>
+            </div>
+            <div class="stat-card stat-card-valid">
+                <div class="stat-number" style="color:#16a34a;">{{ validated_count }}</div>
+                <div class="stat-label">Validated with Evidence</div>
+            </div>
+            <div class="stat-card stat-card-invalid">
+                <div class="stat-number" style="color:#dc2626;">{{ unvalidated_skills | length }}</div>
+                <div class="stat-label">Need Evidence</div>
+            </div>
         </div>
-        <div class="stat-box stat-valid">
-            <div class="stat-number" style="color:#16a34a;">{{ validated_count }}</div>
-            <div class="stat-label">Validated ({{ "%.0f" | format(validation_pct) }}%)</div>
-        </div>
-        <div class="stat-box stat-invalid">
-            <div class="stat-number" style="color:#dc2626;">{{ unvalidated_skills | length }}</div>
-            <div class="stat-label">Need Evidence</div>
-        </div>
-    </div>
 
-    <!-- ── Validated Skills ── -->
-    {% if validated_skills %}
-    <h2>Validated Skills</h2>
-    <p style="font-size:13px; color:#64748b; margin-bottom:14px;">
-        These skills are supported by evidence in your projects or experience section.
-    </p>
-    {% for item in validated_skills %}
-    <div class="validated-skill">
-        <div class="validated-skill-name">{{ item.skill }}</div>
-        {% if item.projects %}
-        <div class="validated-skill-evidence">
-            Demonstrated in:
-            {% for proj in item.projects %}
-            <span class="project-badge">{{ proj[:60] }}{% if proj | length > 60 %}…{% endif %}</span>
+        <div class="validation-progress">
+            <div class="vp-header">
+                <span class="vp-label">Validation Rate</span>
+                <span class="vp-pct">{{ "%.0f" | format(validation_pct) }}%</span>
+            </div>
+            <div class="vp-bar-wrap">
+                <div class="vp-bar-fill" style="width: {{ validation_pct }}%;"></div>
+            </div>
+        </div>
+
+        <!-- ── Validated Skills ── -->
+        {% if validated_skills %}
+        <div class="section-heading">
+            <div class="section-heading-bar"></div>
+            <h2>Validated Skills ({{ validated_count }})</h2>
+            <div class="section-heading-line"></div>
+        </div>
+        {% for item in validated_skills %}
+        <div class="validated-skill">
+            <div class="validated-skill-header">
+                <div class="skill-check-icon">✓</div>
+                <span class="skill-name">{{ item.skill }}</span>
+            </div>
+            {% if item.projects %}
+            <div class="validated-skill-body">
+                <div class="evidence-label">Demonstrated in</div>
+                {% for proj in item.projects %}
+                <span class="project-badge">{{ proj[:60] }}{% if proj | length > 60 %}…{% endif %}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- ── Unvalidated Skills ── -->
+        {% if unvalidated_skills %}
+        <div class="section-heading">
+            <div class="section-heading-bar" style="background: linear-gradient(180deg, #dc2626, #f87171);"></div>
+            <h2>Skills Needing Evidence ({{ unvalidated_skills | length }})</h2>
+            <div class="section-heading-line"></div>
+        </div>
+        <div class="unvalidated-intro">
+            These skills appear in your Skills section but have <strong>no supporting context</strong> in your
+            projects or experience. Recruiters and ATS systems cross-reference skills against real work.
+        </div>
+        <div class="unvalidated-pills">
+            {% for skill in unvalidated_skills %}
+            <span class="unvalidated-pill">{{ skill }}</span>
             {% endfor %}
         </div>
+        <div class="fix-tip-box">
+            <strong>How to Fix</strong>
+            For each skill above, add at least one bullet in your Projects or Experience section that
+            mentions the technology by name and describes how you used it.
+            Example: <em>"Built a REST API using Flask handling 2K daily requests."</em>
+        </div>
         {% endif %}
-    </div>
-    {% endfor %}
-    {% endif %}
 
-    <!-- ── Unvalidated Skills ── -->
-    {% if unvalidated_skills %}
-    <h2>Unvalidated Skills (Need Evidence)</h2>
-    <p style="font-size:13px; color:#64748b; margin-bottom:14px;">
-        These skills appear in your Skills section but have no supporting context
-        in your projects or experience. Recruiters and ATS systems cross-reference
-        claimed skills against actual work.
-    </p>
-    <div class="unvalidated-grid">
-        {% for skill in unvalidated_skills %}
-        <span class="unvalidated-pill">{{ skill }}</span>
-        {% endfor %}
-    </div>
-    <div class="unvalidated-tip">
-        <strong>How to fix:</strong> For each skill above, add at least one bullet point in
-        your Projects or Experience section that mentions the technology by name and describes
-        how you used it. Example: <em>"Built a REST API using Flask handling 2K daily requests."</em>
-    </div>
-    {% endif %}
+        <!-- ── ATS Compatibility ── -->
+        <div class="section-heading">
+            <div class="section-heading-bar" style="background: linear-gradient(180deg, #7c3aed, #a78bfa);"></div>
+            <h2>ATS Compatibility</h2>
+            <div class="section-heading-line"></div>
+        </div>
 
-    <!-- ── Grammar & Spelling ── -->
-    <h2>Grammar &amp; Spelling Analysis</h2>
-    <div class="info-block">
-        <div class="info-row">
-            <span class="info-key">Total Errors</span>
-            <span class="info-value">0 &nbsp;<span class="tag-ok">CLEAN</span></span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Critical Errors</span>
-            <span class="info-value">0</span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Moderate Errors</span>
-            <span class="info-value">0</span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Minor Errors</span>
-            <span class="info-value">0</span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Status</span>
-            <span class="info-value">No grammar or spelling errors detected.</span>
-        </div>
+        {% set ats_score = component_scores.ats_compatibility %}
+        {% set ats_pct   = component_pct.ats_compatibility %}
+        <table class="compat-table">
+            <tr>
+                <td class="td-key">ATS Compatibility Score</td>
+                <td class="td-val">
+                    <strong>{{ "%.0f" | format(ats_score) }}/15</strong> &nbsp;
+                    {% if ats_pct >= 80 %}<span class="tag tag-ok">Excellent</span>
+                    {% elif ats_pct >= 55 %}<span class="tag tag-warn">Moderate</span>
+                    {% else %}<span class="tag tag-bad">Needs Work</span>{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="td-key">Formatting Score</td>
+                <td class="td-val">{{ "%.0f" | format(component_scores.formatting) }}/20</td>
+            </tr>
+            <tr>
+                <td class="td-key">Content Quality Score</td>
+                <td class="td-val">{{ "%.0f" | format(component_scores.content) }}/25</td>
+            </tr>
+            <tr>
+                <td class="td-key">Grammar &amp; Spelling</td>
+                <td class="td-val">
+                    0 errors &nbsp;<span class="tag tag-ok">Clean</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-key">Parsing Friendliness</td>
+                <td class="td-val">
+                    {% if ats_pct >= 80 %}Uses clean, standard formatting readable by automated parsers.
+                    {% elif ats_pct >= 55 %}Some areas may cause parsing issues — review recommendations.
+                    {% else %}Multiple ATS parsing blockers detected — review recommendations urgently.{% endif %}
+                </td>
+            </tr>
+        </table>
+
     </div>
 
-    <!-- ── ATS Compatibility ── -->
-    <h2>ATS Compatibility</h2>
-    {% set ats_score = component_scores.ats_compatibility %}
-    {% set ats_pct   = component_pct.ats_compatibility %}
-    <div class="info-block">
-        <div class="info-row">
-            <span class="info-key">ATS Compatibility Score</span>
-            <span class="info-value">
-                {{ "%.0f" | format(ats_score) }}/15 &nbsp;
-                {% if ats_pct >= 80 %}<span class="tag-ok">EXCELLENT</span>
-                {% elif ats_pct >= 55 %}<span class="tag-warn">MODERATE</span>
-                {% else %}<span class="tag-bad">NEEDS WORK</span>{% endif %}
-            </span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Formatting Score</span>
-            <span class="info-value">{{ "%.0f" | format(component_scores.formatting) }}/20</span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Content Quality Score</span>
-            <span class="info-value">{{ "%.0f" | format(component_scores.content) }}/25</span>
-        </div>
-        <div class="info-row">
-            <span class="info-key">Parsing Friendliness</span>
-            <span class="info-value">
-                {% if ats_pct >= 80 %}Uses clean, standard formatting readable by automated parsers.
-                {% elif ats_pct >= 55 %}Some areas may cause parsing issues — review recommendations.
-                {% else %}Multiple ATS parsing blockers detected — review recommendations urgently.{% endif %}
-            </span>
-        </div>
-    </div>
-
-    <div class="footer">
-        <span>Generated by ATS Resume Scorer</span>
-        <span>Report 2 of 4 — Skill Validation &amp; Content</span>
+    <!-- ── Footer ── -->
+    <div class="pdf-footer">
+        <span class="pdf-footer-brand">ATS Resume Scorer</span>
+        <span class="pdf-footer-page">Report 2 of 4 — Skill Validation &amp; Content &nbsp;·&nbsp; {{ timestamp | format_date }}</span>
     </div>
 
 </body>
